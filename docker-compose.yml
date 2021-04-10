@@ -1,0 +1,33 @@
+# * 建立服務的範本，測試時需要調整參數使用docker-compose.override去覆寫.
+version: "3.7"
+# networks:
+#   vnet:
+volumes:
+  app-data:
+
+services:
+  # TODO 預計改成直接引用Github的Dockerfile
+  alpine:
+    hostname: alpine
+    image: ${DOCKER_REGISTRY:?DOCKER_REGISTRY}/alpine  
+    build:
+      context: ./
+      # context: ./alpine
+      # context: https://waynehuang.visualstudio.com/prog/_git/alpine/
+      # context: waynehuang@vs-ssh.visualstudio.com:v3/waynehuang/prog/alpine./
+      # dockerfile: Dockerfile-alternate      
+      args:
+        buildno: 123
+    volumes: 
+      # - type: volume
+      #   source: app-data
+      #   target: /app
+      - type: bind
+        source: ./
+        target: /app   
+    # networks:
+    #   vnet:
+    # aliases:
+    #  - test-alpine
+    # depends_on:
+    #   - postgres

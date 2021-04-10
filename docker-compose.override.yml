@@ -1,0 +1,15 @@
+version: "3.7"
+# volumes: 
+  # app-data:
+  # cert-foya:
+  # cert-wdev:
+services:
+  alpine:
+    restart: always
+    tty: true    
+    
+  
+  
+
+
+
