@@ -4,20 +4,22 @@ version: "3.7"
 #   vnet:
 volumes:
   app-data:
-
 services:
   # TODO 預計改成直接引用Github的Dockerfile
   alpine:
-    hostname: alpine
-    image: ${DOCKER_REGISTRY:?DOCKER_REGISTRY}/alpine  
+    image: wayne168/alpine
     build:
+      # ! 使用本地Dockerfiel
       context: ./
-      # context: ./alpine
-      # context: https://waynehuang.visualstudio.com/prog/_git/alpine/
+      # ! 使用預設分支為build context
+      # context: https://github.com/panda0001/alpine.git 
+      # ! 使用dev分支為build context
+      # context: https://github.com/panda0001/alpine.git#dev
       # context: waynehuang@vs-ssh.visualstudio.com:v3/waynehuang/prog/alpine./
       # dockerfile: Dockerfile-alternate      
       args:
         buildno: 123
+    # hostname: alpine
     volumes: 
       # - type: volume
       #   source: app-data
